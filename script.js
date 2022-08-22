@@ -1,3 +1,5 @@
+let playerScore = 0;
+let computerScore = 0;
 function main() {
     let random = () => Math.floor(Math.random() * 3);
 
@@ -12,12 +14,15 @@ function main() {
     const scissors = document.querySelector(".scissors");
     scissors.addEventListener("click", playRound);
 
+    let pscore = document.querySelector("#player-score");
+    let cscore = document.querySelector("#computer-score");
+
+    let outcomeText = document.querySelector("#outcome");
+    
     function playRound(event) {
         let x = event.target.innerHTML.toLowerCase();
-        console.log(event.target);
-        console.log(x);
+
         let playerSelection = choice.indexOf(x);
-        console.log(playerSelection);
 
         let computerSelection = random();
 
@@ -34,44 +39,37 @@ function main() {
             outcome = "Computer wins this round!"
         }
         console.log(outcome);
-    }
-            
-    let playerScore = 0;
-    let computerScore = 0;
-    
 
-    for (let i = 0; i < 5;) {
-        if (outcome == "Player wins this round!") {
-            i++
-            playerScore += 1;
-        } else if (outcome == "Computer wins this round!") {
-            i++
-            computerScore += 1;
+        if (outcome === "Player wins this round!") {
+            playerScore += 1
+        } else if (outcome === "Computer wins this round!") {
+            computerScore += 1
         } else {
             // pass
         }
-            
-        console.log("Player Score: " + playerScore);
-        console.log("Computer Score: " + computerScore);
+
+        pscore.textContent = "Your score: " + playerScore;
+        cscore.textContent = "Computer score: " + computerScore;
+        outcomeText.textContent = outcome;
+
+        if (playerScore + computerScore === 10) {
+            if (playerScore > computerScore) {
+                // display player as winner of match
+                // set scores to 0
+            } else {
+                // display computer as winner of match
+                // set scores to 0
+            }
+        }
     }
-    
-    if (playerScore > computerScore) {
-        console.log("Player Win's the Game!");
-    } else {
-        console.log("Computer Win's the Game!");
-    }
-    
 }
 
+const play = document.querySelector("#play");
 
+play.addEventListener("click", playGame);
 
-main();
-
-let restart = prompt("Would you like to play again?");
-restart.toLowerCase();
-
-if (restart == "yes") {
+function playGame() {
+    document.querySelector("#choices").style.display = "flex";
+    play.style.display = "none";
     main();
-} else {
-    alert("Thank You for playing this game!")
 }

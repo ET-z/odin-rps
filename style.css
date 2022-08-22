@@ -19,7 +19,7 @@ body {
 }
 
 #choices {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     padding: 100px;
@@ -31,3 +31,11 @@ body {
     margin-left: 20px;
 }
 
+#scores {
+    display: flex;
+    justify-content: space-between;
+}
+
+#player-score {
+    margin-right: 30px;
+}
