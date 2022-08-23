@@ -1,11 +1,13 @@
 * {
     border-color:red;
     border-width: 2px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
 }
 
 body {
     margin: 0px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,8 +16,28 @@ body {
     align-items: center;
 }
 
+button {
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: solid black 5px;
+}
+
+p {
+    font-family: monospace;
+    margin-top: 50px;
+    font-size: 25px;
+}
+
 #logo {
-    padding: 100px;
+    padding-top: 100px;
+}
+
+.logo {
+    width: 700px;
+    border: solid;
+    border-radius: 30px;
+    border-width: 10px;
 }
 
 #choices {
@@ -29,6 +51,17 @@ body {
     padding: 5px;
     margin-right: 20px;
     margin-left: 20px;
+    border: solid slategrey 10px;
+    box-shadow: 5px 5px 5px;
+}
+
+.pick {
+    width: 300px;
+}
+
+#play {
+    font-size: 30px;
+    margin-top: -200px;
 }
 
 #scores {

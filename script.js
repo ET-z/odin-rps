@@ -3,28 +3,38 @@ let computerScore = 0;
 function main() {
     let random = () => Math.floor(Math.random() * 3);
 
-    let choice = ["rock", "paper", "scissors"];
+    let choiceSet = ["rock", "paper", "scissors"];
+
+    const body = document.querySelector("body");
     
-    const rock = document.querySelector(".rock");
+    const rock = document.querySelector("#rock");
     rock.addEventListener("click", playRound);
 
-    const paper = document.querySelector(".paper");
+    const paper = document.querySelector("#paper");
     paper.addEventListener("click", playRound);
 
-    const scissors = document.querySelector(".scissors");
+    const scissors = document.querySelector("#scissors");
     scissors.addEventListener("click", playRound);
 
     let pscore = document.querySelector("#player-score");
     let cscore = document.querySelector("#computer-score");
+    pscore.textContent = "Your score: 0";
+    cscore.textContent = "Computer score: 0";
 
     let outcomeText = document.querySelector("#outcome");
+
+    let choices = document.querySelector("#choices");
+    let scores = document.querySelector("#scores");
     
     function playRound(event) {
         let x = event.target.innerHTML.toLowerCase();
+        console.log(x)
 
-        let playerSelection = choice.indexOf(x);
+        let playerSelection = choiceSet.indexOf(x);
+        console.log(playerSelection)
 
         let computerSelection = random();
+        console.log(computerSelection)
 
         let outcome;
         if (playerSelection === 0 && computerSelection === 2) {
@@ -52,17 +62,48 @@ function main() {
         cscore.textContent = "Computer score: " + computerScore;
         outcomeText.textContent = outcome;
 
-        if (playerScore + computerScore === 10) {
-            if (playerScore > computerScore) {
-                // display player as winner of match
-                // set scores to 0
-            } else {
-                // display computer as winner of match
-                // set scores to 0
-            }
+        let replayButton;
+        function replay() {
+            replayButton = document.createElement("button");
+            body.appendChild(replayButton);
+            replayButton.textContent = "Replay";
+
+            replayButton.addEventListener("click", () => {
+                choices.style.display = "flex";
+                scores.style.display = "";
+                outcomeText.style.display = "";
+                outcomeText.textContent = "";
+                winner.style.display = "none";
+                replayButton.style.display = "none";
+            });
         }
-    }
-}
+        let winner;
+        function displayWinner() {
+            choices.style.display = "none";
+            scores.style.display = "none";
+            outcomeText.style.display = "none";
+            winner = document.createElement("p");
+            winner.classList.add("winnerText");
+            body.appendChild(winner);
+
+            playerScore = 0;
+            computerScore = 0;
+            pscore.textContent = "Your score: " + playerScore;
+            cscore.textContent = "Computer score: " + computerScore;
+        
+            if (playerScore > computerScore) {
+                winner.textContent = "Player Wins the Match!";
+            } else {
+                winner.textContent = "Computer Wins the Match!";
+            };
+        };
+
+        if (playerScore + computerScore === 10) {
+            displayWinner();
+            replay();
+        };
+    };
+};
 
 const play = document.querySelector("#play");
 
@@ -71,5 +112,6 @@ play.addEventListener("click", playGame);
 function playGame() {
     document.querySelector("#choices").style.display = "flex";
     play.style.display = "none";
+    document.querySelector("#logo").style.display = "none";
     main();
 }
