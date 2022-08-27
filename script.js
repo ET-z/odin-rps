@@ -8,13 +8,22 @@ function main() {
     const body = document.querySelector("body");
     
     const rock = document.querySelector("#rock");
-    rock.addEventListener("click", playRound);
+    rock.addEventListener("click", () => {
+        let playerChoice = 0;
+        playRound(playerChoice);
+    });
 
     const paper = document.querySelector("#paper");
-    paper.addEventListener("click", playRound);
+    paper.addEventListener("click", () => {
+        let playerChoice = 1;
+        playRound(playerChoice);
+    });
 
     const scissors = document.querySelector("#scissors");
-    scissors.addEventListener("click", playRound);
+    scissors.addEventListener("click", () => {
+        let playerChoice = 2;
+        playRound(playerChoice);
+    });
 
     let pscore = document.querySelector("#player-score");
     let cscore = document.querySelector("#computer-score");
@@ -26,11 +35,8 @@ function main() {
     let choices = document.querySelector("#choices");
     let scores = document.querySelector("#scores");
     
-    function playRound(event) {
-        let x = event.target.innerHTML.toLowerCase();
-        console.log(x)
-
-        let playerSelection = choiceSet.indexOf(x);
+    function playRound(playerChoice) {
+        let playerSelection = playerChoice;
         console.log(playerSelection)
 
         let computerSelection = random();
@@ -39,14 +45,19 @@ function main() {
         let outcome;
         if (playerSelection === 0 && computerSelection === 2) {
             outcome = "Player wins this round!"
+            body.style.backgroundColor = "#91f788";
         } else if (playerSelection === 1 && computerSelection === 0) {
             outcome = "Player wins this round!"
+            body.style.backgroundColor = "#91f788";
         } else if (playerSelection === 2 && computerSelection === 1) {
             outcome = "Player wins this round!"
+            body.style.backgroundColor = "#91f788";
         } else if (playerSelection === computerSelection) {
             outcome = "It's a tie!"
+            body.style.backgroundColor = "#ffcd82";
         } else {
             outcome = "Computer wins this round!"
+            body.style.backgroundColor = "#ff8682";
         }
         console.log(outcome);
 
@@ -65,6 +76,7 @@ function main() {
         let replayButton;
         function replay() {
             replayButton = document.createElement("button");
+            replayButton.classList.add("replayButton");
             body.appendChild(replayButton);
             replayButton.textContent = "Replay";
 
@@ -85,6 +97,7 @@ function main() {
             winner = document.createElement("p");
             winner.classList.add("winnerText");
             body.appendChild(winner);
+            body.style.backgroundColor = "whitesmoke";
 
             playerScore = 0;
             computerScore = 0;

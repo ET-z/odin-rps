@@ -48,7 +48,7 @@ p {
 }
 
 .choice {
-    padding: 5px;
+    padding: 10px;
     margin-right: 20px;
     margin-left: 20px;
     border: solid slategrey 10px;
@@ -71,4 +71,8 @@ p {
 
 #player-score {
     margin-right: 30px;
+}
+
+.replayButton {
+    margin-top: 20%;
 }
