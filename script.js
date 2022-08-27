@@ -91,6 +91,7 @@ function main() {
                 outcomeText.textContent = "";
                 winner.style.display = "none";
                 replayButton.style.display = "none";
+                body.style.backgroundColor = "whitesmoke";
             });
         }
         let winner;
