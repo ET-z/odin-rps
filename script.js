@@ -79,6 +79,10 @@ function main() {
             replayButton.classList.add("replayButton");
             body.appendChild(replayButton);
             replayButton.textContent = "Replay";
+            playerScore = 0;
+            computerScore = 0;
+            pscore.textContent = "Your score: " + playerScore;
+            cscore.textContent = "Computer score: " + computerScore;
 
             replayButton.addEventListener("click", () => {
                 choices.style.display = "flex";
@@ -99,15 +103,18 @@ function main() {
             body.appendChild(winner);
             body.style.backgroundColor = "whitesmoke";
 
-            playerScore = 0;
-            computerScore = 0;
             pscore.textContent = "Your score: " + playerScore;
             cscore.textContent = "Computer score: " + computerScore;
         
             if (playerScore > computerScore) {
                 winner.textContent = "Player Wins the Match!";
-            } else {
+                body.style.backgroundColor = "#91f788";
+            } else if (playerScore < computerScore) {
                 winner.textContent = "Computer Wins the Match!";
+                body.style.backgroundColor = "#ff8682";
+            } else {
+                winner.textContent = "It's a Tie!";
+                body.style.backgroundColor = "#ffcd82";
             };
         };
 
